@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, StatusBar } from 'react-native';
 import styled from '@emotion/native';
 import { ThemeProvider } from '@emotion/react';
@@ -9,6 +9,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ITask, ITasks } from './@types';
 
 const App = () => {
+  useEffect(() => {
+    async function go() {
+      await _loadTasks();
+      setTimeout(() => {
+        setIsReady(true);
+      }, 2000);
+    }
+    go();
+    return () => {};
+  }, []);
+
   const width = Dimensions.get('window').width;
 
   const [newTask, setNewTask] = useState<string>('');
@@ -64,7 +75,7 @@ const App = () => {
     setNewTask('');
   };
 
-  return (
+  return isReady ? (
     <ThemeProvider theme={theme}>
       <Container>
         <StatusBar
@@ -95,6 +106,10 @@ const App = () => {
         </List>
       </Container>
     </ThemeProvider>
+  ) : (
+    <Container>
+      <Title>로딩중</Title>
+    </Container>
   );
 };
 
