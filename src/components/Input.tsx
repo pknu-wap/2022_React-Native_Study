@@ -3,7 +3,7 @@ import styled from '@emotion/native';
 import { Dimensions } from 'react-native';
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   value: string;
   onChangeText: (text: string) => void;
   onSubmitEditing: () => void;
@@ -14,6 +14,7 @@ const Input = ({
   value,
   onChangeText,
   onSubmitEditing,
+  onBlur,
 }: Props) => {
   // 현재 화면 너비
   const width = Dimensions.get('window').width;
@@ -30,6 +31,7 @@ const Input = ({
       value={value}
       onChangeText={onChangeText}
       onSubmitEditing={onSubmitEditing}
+      onBlur={onBlur}
     />
   );
 };

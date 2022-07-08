@@ -4,12 +4,17 @@ import React from 'react';
 
 interface Props {
   type: ImageSourcePropType;
-  onPressOut: (id: string) => void;
-  id: string;
-  completed: boolean;
+  onPressOut?: Function;
+  id?: string;
+  completed?: boolean;
 }
 
-const IconButton = ({ type, onPressOut, id, completed }: Props) => {
+const IconButton = ({
+  type,
+  onPressOut = () => {},
+  id,
+  completed = false,
+}: Props) => {
   const _onPressOut = () => {
     onPressOut(id);
   };

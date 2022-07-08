@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-shadow */
 import React, { useState } from 'react';
 import { Dimensions, StatusBar } from 'react-native';
 import styled from '@emotion/native';
